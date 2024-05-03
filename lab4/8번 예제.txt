@@ -1,0 +1,227 @@
+<!-- XML 파트 -->
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android=
+    "http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/Edit1"
+            android:hint="숫자1" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/Edit2"
+            android:hint="숫자2" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/BtnAdd"
+            android:text="더하기" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/BtnSub"
+            android:text="빼기" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/BtnMul"
+            android:text="곱하기" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/BtnDiv"
+            android:text="나누기" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/BtnPer"
+            android:text="나머지" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/BtnCng"
+            android:text="교체" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/TextResult"
+            android:textSize="30dp"
+            android:textColor="#FF0000"
+            android:text="계산 결과 : "/>
+    </LinearLayout>
+
+</LinearLayout>
+
+
+//코틀린 파트
+package com.example.mycalapplication
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
+    lateinit var edit1 : EditText;  lateinit var edit2 : EditText
+    lateinit var btnAdd : Button;   lateinit var btnSub : Button
+    lateinit var btnMul : Button;   lateinit var btnDiv : Button
+    lateinit var btnPer : Button;   lateinit var btnChg : Button
+    lateinit var textResult : TextView
+    lateinit var num1 : String; lateinit var num2 :  String
+    var result : Int? = null
+    var number : Int = 0
+    var tictok : Int = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        title = number.toString() + "회 계산기"
+
+        edit1 = findViewById<EditText>(R.id.Edit1)
+        edit2 = findViewById<EditText>(R.id.Edit2)
+
+        btnAdd = findViewById<Button>(R.id.BtnAdd)
+        btnSub = findViewById<Button>(R.id.BtnSub)
+        btnMul = findViewById<Button>(R.id.BtnMul)
+        btnDiv = findViewById<Button>(R.id.BtnDiv)
+
+        btnPer = findViewById<Button>(R.id.BtnPer)
+        btnChg = findViewById<Button>(R.id.BtnCng)
+
+        textResult = findViewById<TextView>(R.id.TextResult)
+
+        btnAdd.setOnTouchListener{ view, motionEvent ->
+            num1 = edit1.text.toString()
+            num2 = edit2.text.toString()
+
+            if(num1.isEmpty() || num2.isEmpty()) false
+            else
+            {
+                result = Integer.parseInt(num1) + Integer.parseInt(num2)
+                textResult.text = "계산 결과 : "+result.toString()
+
+                edit1.setText(result.toString())
+                edit2.setText("")
+
+                number++
+                title = number.toString() + "회 계산기"
+
+                false
+            }
+        }
+
+        btnSub.setOnTouchListener{ view, motionEvent ->
+            num1 = edit1.text.toString()
+            num2 = edit2.text.toString()
+
+            if(num1.isEmpty() || num2.isEmpty()) false
+            else
+            {
+                result = Integer.parseInt(num1) - Integer.parseInt(num2)
+                textResult.text = "계산 결과 : "+result.toString()
+
+                edit1.setText(result.toString())
+                edit2.setText("")
+
+                number++
+                title = number.toString() + "회 계산기"
+
+                false
+            }
+        }
+
+        btnMul.setOnTouchListener{ view, motionEvent ->
+            num1 = edit1.text.toString()
+            num2 = edit2.text.toString()
+
+            if(num1.isEmpty() || num2.isEmpty()) false
+            else {
+                result = Integer.parseInt(num1) * Integer.parseInt(num2)
+                textResult.text = "계산 결과 : " + result.toString()
+
+                edit1.setText(result.toString())
+                edit2.setText("")
+
+                number++
+                title = number.toString() + "회 계산기"
+
+                false
+            }
+        }
+
+        btnDiv.setOnTouchListener{ view, motionEvent ->
+            num1 = edit1.text.toString()
+            num2 = edit2.text.toString()
+
+            if(num1.isEmpty() || num2.isEmpty()) false
+            else {
+                result = Integer.parseInt(num1) / Integer.parseInt(num2)
+                textResult.text = "계산 결과 : " + result.toString()
+
+                edit1.setText(result.toString())
+                edit2.setText("")
+
+                number++
+                title = number.toString() + "회 계산기"
+
+                false
+            }
+        }
+
+        btnPer.setOnTouchListener{ view, motionEvent ->
+            num1 = edit1.text.toString()
+            num2 = edit2.text.toString()
+
+            if(num1.isEmpty() || num2.isEmpty()) false
+            else {
+                result = Integer.parseInt(num1) % Integer.parseInt(num2)
+                textResult.text = "계산 결과 : "+result.toString()
+
+                edit1.setText(result.toString())
+                edit2.setText("")
+
+                number++
+                title = number.toString() + "회 계산기"
+
+                false
+            }
+        }
+
+        btnChg.setOnTouchListener{ view, motionEvent ->
+            tictok++
+            num1 = edit1.text.toString()
+            num2 = edit2.text.toString()
+
+            if(num1.isEmpty() || num2.isEmpty() || tictok % 2 == 0) false
+            else {
+                edit1.setText(num2.toString())
+                edit2.setText(num1.toString())
+
+                false
+            }
+        }
+    }
+}
+

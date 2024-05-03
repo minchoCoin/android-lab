@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">android7week_drawerlayout</string>
+    <string name="drawer_opened">Drawer Open!!</string>
+    <string name="drawer_closed">Drawer Closed!!</string>
+</resources>
+

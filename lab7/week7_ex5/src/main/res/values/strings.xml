@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">week7_ex5</string>
+    <string name="drawer_opened">Drawer Open!!</string>
+    <string name="drawer_closed">Drawer Close!!</string>
+</resources>
